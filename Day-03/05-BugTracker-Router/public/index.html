@@ -26,6 +26,17 @@
 		padding : 5px;
 		border-radius: 5px;
 	}
+	.icon {
+		display: inline-block;
+		width: 300px;
+		height: 150px;
+		margin-left: 10px;
+		overflow: hidden;
+		background-color: #e7e7e7;
+		margin-bottom: 10px;
+		border: 1px solid gray;
+		border-radius: 5px;
+	}
 	.bugName{
 		font-size: 16pt;
 		cursor: pointer;
@@ -87,6 +98,10 @@
 					templateUrl : 'templates/bugDetails.html',
 					controller : 'bugDetailsController'
 				})
+				.when('/manageview', {
+					templateUrl : 'templates/manageView.html',
+					controller : 'bugsController'
+				})
 				.otherwise({
 					redirectTo : '/list'
 				});
@@ -133,7 +148,16 @@
 				templateUrl : 'templates/bugsDisplay.html'
 			}
 		})
-		
+
+		bugTrackerApp.directive("bugIcon", function(){
+			return {
+				scope : {
+					data : '='
+				},
+				templateUrl : 'templates/manageViewIcon.html'
+			}
+		})
+
 	</script>
 </head>
 <body ng-app="bugTrackerApp">
@@ -143,6 +167,7 @@
 		<section>
 			<span><a href="#/create" >Create</a></span>
 			<span><a href="#/list" >List</a></span>
+			<span><a href="#/manageview" >Grid-List</a></span>
 		</section>
 		<ng-view></ng-view>
 		
